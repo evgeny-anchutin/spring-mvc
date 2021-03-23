@@ -14,23 +14,23 @@ import java.util.stream.Collectors;
 @Controller
 public class CarsController {
 
-	private List<Car> cars;
+    private List<Car> cars;
 
-	public CarsController() {
-		cars = new ArrayList<>();
-		cars.add(new Car("Lada", 100, "white"));
-		cars.add(new Car("Fiat", 90, "red"));
-		cars.add(new Car("Ford", 105, "black"));
-		cars.add(new Car("Mini", 120, "yellow"));
-		cars.add(new Car("Kamaz", 250, "blue"));
-	}
+    public CarsController() {
+        cars = new ArrayList<>();
+        cars.add(new Car("Lada", 100, "white"));
+        cars.add(new Car("Fiat", 90, "red"));
+        cars.add(new Car("Ford", 105, "black"));
+        cars.add(new Car("Mini", 120, "yellow"));
+        cars.add(new Car("Kamaz", 250, "blue"));
+    }
 
-	@GetMapping(value = "/cars")
-	public String printCars(ModelMap model, @RequestParam(name = "count", required = false) Optional<Integer> count) {
-		int carsCount = count.orElse(cars.size());
-		List<Car> carList =cars.stream().limit(carsCount).collect(Collectors.toList());
-		model.addAttribute("cars", carList);
-		return "cars";
-	}
-	
+    @GetMapping(value = "/cars")
+    public String printCars(ModelMap model, @RequestParam(name = "count", required = false) Optional<Integer> count) {
+        int carsCount = count.orElse(cars.size());
+        List<Car> carList = cars.stream().limit(carsCount).collect(Collectors.toList());
+        model.addAttribute("cars", carList);
+        return "cars";
+    }
+
 }
