@@ -26,10 +26,9 @@ public class CarsController {
 	}
 
 	@GetMapping(value = "/cars")
-	public String printWelcome(ModelMap model, @RequestParam(name = "count", required = false) Optional<Integer> count) {
-		List<Car> carList = new ArrayList<>();
+	public String printCars(ModelMap model, @RequestParam(name = "count", required = false) Optional<Integer> count) {
 		int carsCount = count.orElse(cars.size());
-		cars.stream().limit(carsCount).forEach(carList::add);
+		List<Car> carList =cars.stream().limit(carsCount).collect(Collectors.toList());
 		model.addAttribute("cars", carList);
 		return "cars";
 	}
