@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import web.model.Car;
 
 import java.util.ArrayList;
@@ -31,6 +32,12 @@ public class CarsController {
         List<Car> carList = cars.stream().limit(carsCount).collect(Collectors.toList());
         model.addAttribute("cars", carList);
         return "cars";
+    }
+
+    @GetMapping(value = "/cars/count")
+    @ResponseBody
+    public String printCars(ModelMap model) {
+        return "" + cars.size();
     }
 
 }
